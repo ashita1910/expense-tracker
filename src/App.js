@@ -28,7 +28,7 @@ function App() {
 
   const addExpenseForm = (values) => {
     setExpenses((prevState) => {
-      return [...prevState, { id: "e" + (expenses.length + 1), ...values }];
+      return [{ id: "e" + (expenses.length + 1), ...values }, ...prevState];
     });
   };
 

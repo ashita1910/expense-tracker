@@ -8,16 +8,18 @@ const ExpenseForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const values = {
-      title: title,
-      amount: amount,
-      date: new Date(date),
-    };
-    console.log("data ", values);
-    props.addExpenseForm(values);
-    setTitle("");
-    setAmount("");
-    setDate("");
+    if (title !== "" && amount !== "" && date !== "") {
+      const values = {
+        title: title,
+        amount: amount,
+        date: new Date(date),
+      };
+      props.addExpenseForm(values);
+      setTitle("");
+      setAmount("");
+      setDate("");
+    }
+    props.hideExpenseForm();
   };
 
   return (
@@ -57,6 +59,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__actions">
+          <button onClick={() => props.hideExpenseForm()}>Cancel</button>
           <button type="submit">Add Expense</button>
         </div>
       </div>
